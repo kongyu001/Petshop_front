@@ -1,0 +1,118 @@
+<div class="form-group">
+	<div class="col-sm-12">
+		<div class="col-sm-5">
+			<img ng-src="{{commodity.commodityImageUrl}}" alt="" class="img-thumbnail-commodityInfo">
+		</div>
+		<div class="col-sm-7">
+			<div class="col-sm-8 pull-left commodityInfo-div">
+				<div class="font-commodityInfo">
+					<span>商品名称:{{commodity.commodityName}}</span>
+				</div>
+				<div class="font-commodityInfo">
+					<span>商品介绍 :{{commodity.commodityDescription}}</span>
+				</div>
+				<div class="font-commodityInfo">
+					<span>单价:{{commodity.commodityPrice}}</span>
+				</div>
+				<div class="font-commodityInfo">
+					<span>库存数量:{{commodity.commodityLast}}</span>
+				</div>
+				<div class="font-commodityInfo">
+					<span>购买数量: 
+						<input  type="text"  
+						onkeyup="this.value=this.value.replace(/[^\d]/g,'') " 
+						onafterpaste="this.value=this.value.replace(/[^\d]/g,'')" 
+						ng-model="purchaseQuantity" />
+					</span>
+				</div>
+				<div class="font-commodityInfo">
+					<span>总价:{{purchaseQuantity*commodity.commodityPrice}}</span>
+				</div>
+				<div class="font-commodityInfo">
+					<span class="pull-left">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">购买</button>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title" id="myModalLabel" style="text-align: center;">购买确认</h3>
+			</div>
+			<div class="modal-body">
+				<div class="col-sm-12">
+					<div>
+						<img ng-src="{{commodity.commodityImageUrl}}" alt="" class="" style="width: 200px;height: 200px;">
+					</div>
+					<div class="col-sm-12">
+						<h4>购买数量:{{purchaseQuantity}}</h4>
+						<h4>商品名称:{{commodity.commodityName}}</h4>
+						<h4>商品介绍:{{commodity.commodityDescription}}</h4>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				<button type="button" class="btn btn-primary" ng-click="confirm(purchaseQuantity)">确认</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title" id="myModalLabel" style="text-align: center;">购买成功</h3>
+			</div>
+			
+			<div class="clearfix"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click="Ok()">确认</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="failModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title" id="myModalLabel" style="text-align: center;">购买失败</h3>
+			</div>
+			
+				<h4>您的余额不足，请前往充值页面，充值后购买!</h4>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click="rechargeOk()">确认</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title" id="myModalLabel" style="text-align: center;">购买失败</h3>
+			</div>
+			
+				<h4>库存不足哦，可以少买点哦!</h4>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+			</div>
+		</div>
+	</div>
+</div>

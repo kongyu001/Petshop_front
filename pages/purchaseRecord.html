@@ -1,0 +1,107 @@
+<div class="row mt">
+	<div class="col-lg-12">
+		<div class="content-panel">
+			<section id="unseen">
+				<table class="table table-bordered table-striped table-condensed">
+					<fieldset>
+
+						<div class="centered">
+							<h3>购买记录</h3>
+						</div>
+						<hr>
+
+						<div class="input-group input-group-sm">
+							<!--<input type="text" ng-model="searchTime.start" name="datetime" class="ui_timepicker" value="">——<input type="text" ng-model="searchTime.end" name="datetime" class="ui_timepicker" value="">-->
+							<input type="date" ng-model="searchTime.start" />——<input type="date" ng-model="searchTime.end" />
+							<!--<input id="datetimepicker" type="text" ng-model="searchTime.start">———<input id="datetimepicker" type="text" ng-model="searchTime.end">-->
+							<button class="btn btn-success btn-lg pull-right" ng-click="search_Time(searchTime.start,searchTime.end)" style="margin-left: 30px;font-size: 14px;">
+                              	<i aria-hidden="true"></i>日期筛选
+						   </button>
+							<!--<label>开始时间：</label>
+							<input id="start" type="text" placeholder="YYYY-MM-DD HH:MM:SS" />
+							<label>结束时间</label>
+							<input id="end" type="text" placeholder="YYYY-MM-DD HH:MM:SS" />-->
+						</div>
+
+						<!--<div style="float: left;display: inline;font-size: 15px;padding-right: 20px;">
+							<input type="text" placeholder="日期筛选" ng-model="cate.cateName" />
+							<button class="btn btn-success btn-xs pull-right" ng-click="searchTime(time)"><i style="font-size: 15px;"></i>搜索</button>
+						</div>-->
+						<table class="table table-bordered table-striped" >
+							<thead>
+								<tr>
+									<th>图片</th>
+									<th>名称</th>
+									<th>介绍</th>
+									<th>购买日期</th>
+									<th>数量</th>
+									<th>总价</th>
+									<th>交易状态</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="purchase in purchase_records">
+									<!--<td class="col-md-4" ng-bind="purchase.commodityid"></td>-->
+									<td>
+										<!--改过ng-bind-->
+										<image ng-src="{{purchase.commodityImageUrl}}" style="width: 50px;height: 50px;"></image>
+									</td>
+									<td ng-bind="purchase.commodityName"></td>
+									<td ng-bind="purchase.commodityDescription"></td>
+									<td ng-bind="purchase.purchaseOrderTime"></td>
+									<td ng-bind="purchase.purchaseQuantity"></td>
+									<td ng-bind="purchase.purchaseTotalPrice"></td>
+									<td ng-bind="purchase.purchaseStatement"></td>
+								</tr>
+							</tbody>
+						</table>
+						<nav class="dataTables_paginate paging_full_numbers text-center">
+						<ul class="pagination" id="indexTable_paginate">
+							<li><a href="" class="paginate_button" tabindex="0" ng-click="loadList()">&laquo;</a></li>
+							<li ng-modal="page" ng-repeat="page in pageParams.pageArray"><a href="" class="first paginate_button paginate_button" tabindex="0" ng-click="loadList(page)" ng-bind="page"></a></li>
+							<li><a href="" class="paginate_button" tabindex="0" ng-click="loadList(pageParams.pages)">&raquo;</a></li>
+						</ul>
+					</nav>
+
+					</fieldset>
+
+				</table>
+			</section>
+		</div>
+		<!-- /content-panel -->
+	</div>
+	<!-- /col-lg-4 -->
+</div>
+
+<!--date search-->
+<!--<div class="modal fade " id="myModal " tabindex="-1 " role="dialog " aria-labelledby="exampleModalLabel ">
+	<div class="modal-dialog " role="document ">
+		<div class="modal-content ">
+			<table class="table table-bordered table-striped ">
+				<thead>
+					<tr>
+						<th>图片</th>
+						<th>名称</th>
+						<th>介绍</th>
+						<th>购买日期</th>
+						<th>数量</th>
+						<th>总价</th>
+					</tr>
+				</thead>
+				<nav class="dataTables_paginate paging_full_numbers text-center ">
+					<ul class="pagination " id="indexTable_paginate ">
+						<li>
+							<a href=" " class="paginate_button " tabindex="0 " ng-click="loadList() ">&laquo;</a>
+						</li>
+						<li ng-repeat="page in pageParams.pageArray ">
+							<a href=" " class="first paginate_button paginate_button " tabindex="0 " ng-click="loadList(page) " ng-bind="page "></a>
+						</li>
+						<li>
+							<a href=" " class="paginate_button " tabindex="0 " ng-click="loadList(pageParams.pages) ">&raquo;</a>
+						</li>
+					</ul>
+				</nav>
+			</table>
+		</div>
+	</div>
+</div>-->

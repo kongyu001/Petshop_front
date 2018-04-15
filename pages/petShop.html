@@ -1,0 +1,70 @@
+<div class="row mt">
+	<div class="col-lg-12">
+		<div class="main">
+			<!--巨幕-->
+			<div class="jumbotron">
+				<h1>PET SHOP宠物商店</h1>
+				<p>哈士奇，看家守门值得拥有！</p>
+			</div>
+			<!--分割线-->
+			<div class="hr-dash"></div>
+			<div class="col-lg-12 header-div">
+				<!--品类列表-->
+				<div class="col-lg-8">
+					<button type="button" class="btn btn-default mg-5" ng-click="loadList(1,search.name,-1)">全部品类</button>
+					<div ng-repeat="category in categories" class="nav-collapse collapse">
+						<button type="button" class="btn btn-default mg-5" ng-click="loadList(1,search.name,category.id)">{{category.categoryName}}</button>
+					</div>
+				</div>
+				<!--搜索框-->
+				<div class="col-lg-4 pull-right">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="搜索商品" ng-model="search.name">
+						<span class="input-group-btn">
+						   <button class="btn btn-default" type="button" ng-click="loadList(1,search.name)">搜索</button>
+					    </span>
+					</div>
+				</div>
+			</div>
+			<!--商品列表-->
+			<div class="col-lg-4 mg-b" ng-repeat="commodity in commodities">
+				<div class="col-lg-6">
+					<img ng-src="{{commodity.commodityImageUrl}}" alt="无图片" class="img-thumbnail pet-img" ng-click="purchase(commodity)">
+				</div>
+				<div class="col-lg-6">
+					<ul>
+						<li class="font-2">
+							<p>{{commodity.commodityName}}</p></li>
+						<li class="font-2">
+							<p>￥{{commodity.commodityPrice}}</p></li>
+						<li class="font-3">
+							<p>{{commodity.commodityDescription}}</p></li>
+						<li class="font-2">
+							<p>已售{{commodity.commoditySold}}只</p></li>
+						<button type="button" class="btn btn-primary" ng-click="purchase(commodity)">购买</button>
+					</ul>
+				</div>
+			</div>
+		</div><!---->
+	</div><!-- /col-lg-12 -->
+</div><!-- row mt-->
+<!--分页-->
+<nav class="dataTables_paginate paging_full_numbers text-center" ng-show="showPage">
+	<ul class="pagination" id="indexTable_paginate">
+		<li>
+			<a href="" class="paginate_button" tabindex="0" ng-click="loadList(1,search.name)">&laquo;</a>
+		</li>
+		<li ng-repeat="page in pageParams.pageArray">
+			<a href="" class="first paginate_button paginate_button" tabindex="0" ng-click="loadList(page,search.name)" ng-bind="page"></a>
+		</li>
+		<li>
+			<a href="" class="paginate_button" tabindex="0" ng-click="loadList(pageParams.pages,search.name)">&raquo;</a>
+		</li>
+	</ul>
+</nav>
+<!--数据为空-->
+<div id="nullList" class="col-lg-8 mg-l" ng-show="showNull">
+	<div class="font-1">
+		<p>数据为空</p>
+	</div>
+</div>
